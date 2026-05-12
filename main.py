@@ -77,6 +77,11 @@ def detect_ioc(vba_code):
             print(f"\n[!] Kategori: {category.capitalize()}")
             print("✅ IOC Terdeteksi") 
             found[category] = matches
+    
+    if len(found) > 0:
+        print(f"⚠️ {len(found)} kategori IOC ditemukan!")
+    else:
+        print("✅ Bersih, tidak ada IOC")
         
     return found
 
@@ -125,11 +130,15 @@ def main():
             if file:
                 report = {}
                 for vba_filename,module in file.items():
+                    print(f"\n📄 Module: {vba_filename}")
                     ioc = detect_ioc(module["vba_code"])
-                    ent = calculate_entropy(module["vba_code"])
-                    level = entropy_level(ent)
-                        
-                    print(f"\n📊 Entropy: {ent} ({level})")
+                    ent = 0.0
+                    level = "N/A"
+                    if len(ioc) > 0:
+                        ent = calculate_entropy(module["vba_code"])
+                        level = entropy_level(ent)
+                            
+                        print(f"\n📊 Entropy: {ent} ({level})")
                     
                     report[vba_filename] = {
                         "ioc": ioc,
