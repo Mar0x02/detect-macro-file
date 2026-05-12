@@ -74,8 +74,8 @@ def detect_ioc(vba_code):
             if keyword.lower() in vba_code.lower():
                 matches.append(keyword)
         if matches:
-            print("✅ IOC Terdeteksi:") 
             print(f"\n[!] Kategori: {category.capitalize()}")
+            print("✅ IOC Terdeteksi") 
             found[category] = matches
         
     return found
