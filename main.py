@@ -128,9 +128,6 @@ def main():
                     ioc = detect_ioc(module["vba_code"])
                     ent = calculate_entropy(module["vba_code"])
                     level = entropy_level(ent)
-                    
-                    if len(ioc) == 0:
-                        print("❌ Tidak ada IOC yang mencurigakan ditemukan.")
                         
                     print(f"\n📊 Entropy: {ent} ({level})")
                     
